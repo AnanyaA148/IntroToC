@@ -2,6 +2,7 @@
 #include <stdbool.h>
 
 void main(){
+    //it works!!
     float check(float c1){
         int count =0;
         while ((c1 <=100 && c1>=0) == false){
