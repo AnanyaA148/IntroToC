@@ -2,7 +2,7 @@
 #include <stdbool.h>
 //unit3.hw
 
-int main(){
+void main(){
     int * myArray;
 
     myArray = malloc(10 * sizeof(int));
@@ -15,28 +15,37 @@ int main(){
     myArray[6] = 4;
     myArray[7] = 1;
     myArray[8] = 9;
-    myArray[9] = 7;
+    myArray[9] = 78;
 
     int * sum;
-    sum = malloc(sizeof(int))
+    sum = malloc(sizeof(int));
     sum[0]=0;
 
     int * large;
-    large = malloc(sizeof(int))
-    large[0] = *score
+    large = malloc(sizeof(int));
+    large[0] = *myArray;
 
-    bool dup = false;
+    int * dup;
+    dup  = malloc(sizeof(int));
+    dup[0] = 0;
 
-    for(int i=0; i<10; i++){
-        int num = myArray[i];
-        sum = sum + num;
-        if(num > large){
-            large =num;
+    int * count;
+    count = malloc(sizeof(int));
+
+    for(*count=0; *count<10; *count = *count +1){
+
+        *sum = *sum +  *(myArray+ *count);
+        if( *(myArray+ *count) > *large){
+            *large =*(myArray+ *count);
         }
-        for(int j=i+1; j<10; j++){
-            if (dup == false){
-                if (num == myArray[j]){
-                    dup = true;
+
+        int * j;
+        j =  malloc(sizeof(int));
+
+        for(*j=*count+1; *j<10; *j= *j+1){
+            if (*dup == 0){
+                if (*(myArray+ *count) == *(myArray+ *j)){
+                    *dup = 1;
                 }
             }
         }
@@ -45,12 +54,13 @@ int main(){
 
 
     float * average;
+    average = malloc(sizeof(int));
     average[0] = (*sum)/10.0;
 
-    printf("1) Largest value = %d\n", large);
-    printf("2) Average value as a float = %.2f\n", average);
+    printf("1) Largest value = %d\n", *large);
+    printf("2) Average value as a float = %.2f\n", *average);
 
-    if (dup){
+    if (*dup){
         printf("The array has duplicates.");
     }else{
         printf("There array has no duplicates.");
@@ -58,6 +68,6 @@ int main(){
 
 
 
-    return 0;
+
 
 }
