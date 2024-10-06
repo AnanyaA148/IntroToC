@@ -3,9 +3,28 @@
 //unit3.hw
 
 int main(){
-    int myArray[10] ={1,56,4,0,-1,5,4,1,9,78};
-    int sum =0;
-    int large =myArray[0];
+    int * myArray;
+
+    myArray = malloc(10 * sizeof(int));
+    myArray[0] = 1;
+    myArray[1] = 56;
+    myArray[2] = 4;
+    myArray[3] = 0;
+    myArray[4] = -1;
+    myArray[5] = 5;
+    myArray[6] = 4;
+    myArray[7] = 1;
+    myArray[8] = 9;
+    myArray[9] = 7;
+
+    int * sum;
+    sum = malloc(sizeof(int))
+    sum[0]=0;
+
+    int * large;
+    large = malloc(sizeof(int))
+    large[0] = *score
+
     bool dup = false;
 
     for(int i=0; i<10; i++){
@@ -23,7 +42,10 @@ int main(){
         }
 
     }
-    float average = sum/10.0;
+
+
+    float * average;
+    average[0] = (*sum)/10.0;
 
     printf("1) Largest value = %d\n", large);
     printf("2) Average value as a float = %.2f\n", average);
