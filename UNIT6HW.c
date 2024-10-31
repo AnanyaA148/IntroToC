@@ -25,14 +25,18 @@ char most_occuring_character ( char *str){
     //^
 
 	for (int i = 0; i< size-1; i++){
+        occurance_temp =0;
         for (int i2 = i+1; i2<size; i2++){
             if (str[i]== *(str+i2)){
                 occurance_temp++;
             }
         }
         if (occurance_temp!=0&&occurance_temp>occurance+1){
-                occurance=occurance_temp;
-                popChar = str[i];
+                if (str[i] != ' '){
+                    occurance=occurance_temp;
+                    popChar = str[i];
+                }
+
 
         }
 	}
