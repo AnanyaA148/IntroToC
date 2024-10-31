@@ -115,18 +115,21 @@ char *Up_letters( char *str){
 
     int swap;
     char temp;
-    for (int j =0; j <let; j++){
+    for (int j =0; j <let-1; j++){
         swap =0;
         for(int k=0; k<let-1; k++){
+
             if(*(upper+k) > *(upper+k+1)){
+
                 temp = *(upper+k);
                 upper[k] = *(upper+k+1);
                 upper[k+1] = temp;
                 swap =1;
+
             }
         }
 
-        if (swap){
+        if (!swap){
             break;
         }
 
