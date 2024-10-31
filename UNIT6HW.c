@@ -85,24 +85,23 @@ char *Up_letters( char *str){
 
 
 	//get's *str size
+	int let =0;
+
     while (str[size] != '\0') {
         size++;
     }
-    printf("%d\n", size);
 
-    int let =0;
+
     for (int i = 0; i<size; i++){
 
         if(str[i] >= 'A' && str[i] <= 'Z')
         {
 
-            printf("%c", 'h');
             upper[let] = str[i];
         }
         else if(str[i] >= 'a' && str[i] <= 'z')
         {
             upper[let] = str[i] - 32;
-            printf("%s\n", upper);
         }else{
             let--;
 
@@ -116,12 +115,10 @@ char *Up_letters( char *str){
         swap =0;
         for(int k=0; k<let-1; k++){
             if(*(upper+k) > *(upper+k+1)){
-                printf("%s\n", upper);
                 temp = *(upper+k);
                 upper[k] = *(upper+k+1);
                 upper[k+1] = temp;
                 swap =1;
-                printf("%s\n\n", upper);
             }
         }
 
