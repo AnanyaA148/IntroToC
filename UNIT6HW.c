@@ -75,7 +75,10 @@ char *Up_letters( char *str){
 
 
 	int size = 0; //declares size var
-    char * upper;
+
+    char* upper;
+    upper = calloc(1,sizeof(char));
+    //printf("%s\n", upper);
 
 
 
@@ -86,55 +89,50 @@ char *Up_letters( char *str){
         size++;
     }
     printf("%d\n", size);
-    upper = malloc(1);
-    //printf("a%s\n", upper);
 
-
+    int let =0;
     for (int i = 0; i<size; i++){
 
         if(str[i] >= 'A' && str[i] <= 'Z')
         {
 
             printf("%c", 'h');
-            upper[i] = str[i];
+            upper[let] = str[i];
         }
         else if(str[i] >= 'a' && str[i] <= 'z')
         {
-            //cap++;
-            //upper = realloc(upper, cap * sizeof(char) );
-            //printf("%c", 'a');
-            upper[i] = str[i] - 32;
-            //printf("%c", *(upper+i));
+            upper[let] = str[i] - 32;
             printf("%s\n", upper);
         }else{
-            printf("%c", 'f');
-
-            //upper = realloc(upper, cap * sizeof(char) );
+            let--;
 
         }
+        let++;
     }
-    printf("%s", upper);
 
-
-    /*
-    int len = strlen(upper);
+    int swap;
     char temp;
-
-    // Bubble sort algorithm
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = i + 1; j < len; j++) {
-            if (upper[i] > upper[j]) {
-                temp = upper[i];
-                upper[i] = upper[j];
-                upper[j] = temp;
+    for (int j =0; j <let; j++){
+        swap =0;
+        for(int k=0; k<let-1; k++){
+            if(*(upper+k) > *(upper+k+1)){
+                printf("%s\n", upper);
+                temp = *(upper+k);
+                upper[k] = *(upper+k+1);
+                upper[k+1] = temp;
+                swap =1;
+                printf("%s\n\n", upper);
             }
         }
+
+        if (swap){
+            break;
+        }
+
     }
-    printf("%s", *upper);
-    */
+
     return upper;
 
-    //char * final= char malloc[sizeof(size];
 
 }
 
