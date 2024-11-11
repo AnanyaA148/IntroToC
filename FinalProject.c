@@ -1,4 +1,21 @@
 #include <stdio.h>
+typedef struct{ // faculty info
+    char * name;
+    char * id;
+    char * department;
+    char * rank;
+
+
+} faculty;
+
+
+typedef struct{ // student info
+    char * name;
+    char * id;
+    float gpa;
+    int credit;
+
+} student;
 
  int main(){
 
