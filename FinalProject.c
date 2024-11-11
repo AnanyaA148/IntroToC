@@ -35,6 +35,23 @@ void addFaculty(faculty * f){
 
 }
 
+void addStudent(student * s); // Add a new student
+
+void addStudent(student * s){
+
+    printf("\n\nEnter the student's info:\n\n ");
+    printf("\tName of the student: ");
+    scanf("%s", &(*s).name);
+    printf("\tID: ");
+    scanf("%s", &(*s).id);
+    printf("\tGPA:");
+    scanf("%s", &(*s).gpa);
+    printf("\tCredit hours: ");
+    scanf("%s", &(*s).credit);
+
+
+}
+
  int main(){
 
     faculty * facultylst;
@@ -42,6 +59,8 @@ void addFaculty(faculty * f){
     int numfaculty =0;
 
     student * studentlst;
+    studentlst = malloc(sizeof(student));
+    int numstudent;
 
     while(1){
         int done =0;
@@ -62,6 +81,8 @@ void addFaculty(faculty * f){
                 numfaculty++;
                 break;
             case 2:
+                addStudent(studentlst + numstudent);
+                numstudent++;
                 break;
             case 3:
                 break;
