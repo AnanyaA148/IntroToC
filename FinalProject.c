@@ -22,6 +22,8 @@ void addFaculty(faculty * f); // Add a new faculty memeber
 
 void addFaculty(faculty * f){
 
+
+
     f->name = malloc(50 * sizeof(char)); // Allocate enough space for the name
     f->id = malloc(20 * sizeof(char)); // Allocate enough space for the id
     f->department = malloc(50 * sizeof(char)); // Allocate enough space for the department
@@ -48,6 +50,8 @@ void addFaculty(faculty * f){
 void addStudent(student * s); // Add a new student
 
 void addStudent(student * s){
+
+
 
     s->name = malloc(50 * sizeof(char)); // Allocate enough space for the name
     s->id = malloc(20 * sizeof(char)); // Allocate enough space for the id
@@ -76,13 +80,14 @@ void printTuition(student *s); // Print tuition invoice for a student
 
 void printTuition(student *s){
     char * givenId;
-    printf("Enter the student's id");
+    printf("Enter the student's id: ");
     scanf("%s", givenId);
     printf("hi");
 
 
     for(student * p = s; p<s+5; p++){
         printf("hi");
+
         if (strcmp((*p).id, givenId)){
             printf("bye");
             printf("Here is the tuition invoice for %s", (*p).name);
@@ -123,10 +128,12 @@ void printTuition(student *s){
             case 1:
                 addFaculty(facultylst + numfaculty);
                 numfaculty++;
+
                 break;
             case 2:
                 addStudent(studentlst + numstudent);
                 numstudent++;
+                printf("%f", (studentlst + numstudent)->gpa); // not working for some reason. The memory is not getting stored in this variable. Everything is empty.
                 break;
             case 3:
                 printTuition(studentlst);
@@ -147,4 +154,5 @@ void printTuition(student *s){
 
 
     }
+
  }
