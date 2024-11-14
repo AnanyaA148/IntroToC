@@ -132,8 +132,9 @@ void printTuition(student *s){
                 break;
             case 2:
                 addStudent(studentlst + numstudent);
-                numstudent++;
+
                 printf("%f", (studentlst + numstudent)->gpa); // not working for some reason. The memory is not getting stored in this variable. Everything is empty.
+                numstudent++;
                 break;
             case 3:
                 printTuition(studentlst);
