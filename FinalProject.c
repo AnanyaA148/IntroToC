@@ -1,114 +1,135 @@
+/* NAME OF STUDENTS
+
+    Ananya Agarwal
+    Sharon Huang
+    Caleb
+    Adrian
+*/
+
+//________________________________
 #include <stdio.h>
-typedef struct{ // faculty info
+#include <stdlib.h>
+#include <string.h>
+
+//_____________DATATYPE
+typedef struct{ // faculty info (MAX: 30)
     char * name;
     char * id;
     char * department;
+    //only math, cs, or science
     char * rank;
-
-
+    //professor or adjunct
 } faculty;
 
 
-typedef struct{ // student info
+typedef struct{ // student info (MAX: 100)
     char * name;
     char * id;
     float gpa;
+    //if GPA>= 3.85 then 25% TOTAL payment
     int credit;
+    // $236.45 per one credit hour + 52 for admin fee
 
 } student;
 
+//_____________PROTOTYPES
+void addFaculty(faculty f[], int index );// Add a new faculty memeber
+void addStudent(student s[], int index); // Add a new student
+void printTuition(student s[], int numStudents); // Print tuition invoice for a
+// *?? makeCapital (char[] a); // as STRING entries are stored in capital, this makes all letter inputs capital letters
 
-void addFaculty(faculty * f); // Add a new faculty memeber
-
-void addFaculty(faculty * f){
-
+//_____________FUNCTIONS
+void addFaculty(faculty f[], int index){
 
 
-    f->name = malloc(50 * sizeof(char)); // Allocate enough space for the name
-    f->id = malloc(20 * sizeof(char)); // Allocate enough space for the id
-    f->department = malloc(50 * sizeof(char)); // Allocate enough space for the department
-    f->rank = malloc(30 * sizeof(char));
+
+    f[index].name = malloc(50 * sizeof(char)); // Allocate enough space for the name
+    f[index].id = malloc(20 * sizeof(char)); // Allocate enough space for the id
+    f[index].department = malloc(50 * sizeof(char)); // Allocate enough space for the department
+    f[index].rank = malloc(30 * sizeof(char));
+
 
     printf("\n\nEnter the faculty's info:\n\n ");
 
     printf("\tName of the faculty: ");
-    scanf("%s", (*f).name);
+    scanf("%s", f[index].name);
+
 
     printf("\tID: ");
-    scanf("%s", (*f).id);
+    scanf("%s", f[index].id);
 
     printf("\tRank:");
-    scanf("%s", (*f).rank);
+    scanf("%s", f[index].rank);
 
     printf("\tDepartment: ");
-    scanf("%s", (*f).department);
+    scanf("%s", f[index].department);
 
 
 
 }
 
-void addStudent(student * s); // Add a new student
-
-void addStudent(student * s){
 
 
+void addStudent(student s[], int index){
 
-    s->name = malloc(50 * sizeof(char)); // Allocate enough space for the name
-    s->id = malloc(20 * sizeof(char)); // Allocate enough space for the id
+
+
+    s[index].name = malloc(50 * sizeof(char)); // Allocate enough space for the name
+    s[index].id = malloc(20 * sizeof(char)); // Allocate enough space for the id
 
 
     printf("\n\nEnter the student's info:\n\n ");
 
     printf("\tName of the student: ");
-    scanf("%s", (*s).name);
-    printf("%s", s->name);
+    scanf("%s", s[index].name);
+    printf("%s", s[index].name);
 
     printf("\tID: ");
-    scanf("%s", (*s).id);
+    scanf("%s", s[index].id);
 
     printf("\tGPA:");
-    scanf("%f", &(*s).gpa);
-    printf("%f", (*s).gpa);
+    scanf("%f", &s[index].gpa);
+    printf("%f", s[index].gpa);
 
     printf("\tCredit hours: ");
-    scanf("%d", &(*s).credit);
+    scanf("%d", &s[index].credit);
 
 
 }
 
-void printTuition(student *s); // Print tuition invoice for a student
 
-void printTuition(student *s){
-    char * givenId;
-    printf("Enter the student's id: ");
+void printTuition(student s[], int numStudents){
+    //not working for some reason
+
+    /*
+    char givenId[20];
+    printf("Enter the student's ID: ");
     scanf("%s", givenId);
-    printf("hi");
-
-
-    for(student * p = s; p<s+5; p++){
-        printf("hi");
-
-        if (strcmp((*p).id, givenId)){
-            printf("bye");
-            printf("Here is the tuition invoice for %s", (*p).name);
-            printf("%s \t\t\t\t %s", (*p).name, (*p).id);
-            printf("Credit Hours: %d ($236.45/credit hour)", (*p).credit);
-            printf("Fees: $52");
-            printf("Total Payment:");
-
-            break;
-        }
+    for (int i = 0; i < numStudents; i++) {
+            if (strcmp(s[i].id, givenId) == 0) {
+                printf("Here is the tuition invoice for %s:\n", s[i].name);
+                printf("%s \t\t\t\t %s\n", s[i].name, s[i].id);
+                printf("Credit Hours: %d ($236.45/credit hour)\n", s[i].credit);
+                printf("Fees: $52\n"); float tuition = s[i].credit * 236.45 + 52;
+                // Apply 25% discount if GPA >= 3.85
+                if (s[i].gpa >= 3.85) {
+                        tuition *= 0.75;
+                }
+                printf("Total Payment: $%.2f\n", tuition);
+                return;
+            }
     }
+    printf("Student with ID %s not found.\n", givenId);
+    */
 }
 
+//_____________MAIN FUNCTION
  int main(){
 
-    faculty * facultylst;
-    facultylst = malloc(sizeof(faculty));
-    int numfaculty =0;
+    faculty facultylst[30];
+    int numfaculty;
 
-    student * studentlst;
-    studentlst = malloc(sizeof(student));
+    student studentlst[100];
     int numstudent;
 
     while(1){
@@ -126,18 +147,17 @@ void printTuition(student *s){
         switch(select)
         {
             case 1:
-                addFaculty(facultylst + numfaculty);
+                addFaculty(facultylst, numfaculty);
                 numfaculty++;
-
                 break;
             case 2:
-                addStudent(studentlst + numstudent);
-
-                printf("%f", (studentlst + numstudent)->gpa); // not working for some reason. The memory is not getting stored in this variable. Everything is empty.
+                addStudent(studentlst, numstudent);
+                //printf("%s", studentlst[numstudent].id);
                 numstudent++;
                 break;
             case 3:
-                printTuition(studentlst);
+                printf("%s", studentlst[numstudent-1].id);
+                printTuition(studentlst, numstudent);
                 break;
             case 4:
                 break;
