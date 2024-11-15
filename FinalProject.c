@@ -36,8 +36,7 @@ typedef struct{ // student info (MAX: 100)
 void addFaculty(faculty f[], int index );// Add a new faculty memeber
 void addStudent(student s[], int index); // Add a new student
 void printTuition(student s[], int numStudents); // Print tuition invoice for a
-// *?? makeCapital (char[] a); // as STRING entries are stored in capital, this makes all letter inputs capital letters
-
+void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
 
@@ -53,16 +52,22 @@ void addFaculty(faculty f[], int index){
 
     printf("\tName of the faculty: ");
     scanf("%s", f[index].name);
+    makeCapital(f[index].name);
+
+    //printf("%s", f[index].name);
 
 
     printf("\tID: ");
     scanf("%s", f[index].id);
+    makeCapital(f[index].id);
 
     printf("\tRank:");
     scanf("%s", f[index].rank);
+    makeCapital(f[index].rank);
 
     printf("\tDepartment: ");
     scanf("%s", f[index].department);
+    makeCapital(f[index].department);
 
 
 
@@ -82,14 +87,17 @@ void addStudent(student s[], int index){
 
     printf("\tName of the student: ");
     scanf("%s", s[index].name);
-    printf("%s", s[index].name);
+    makeCapital(s[index].name);
+    //printf("%s", s[index].name);
+
 
     printf("\tID: ");
     scanf("%s", s[index].id);
+    makeCapital(s[index].id);
 
     printf("\tGPA:");
     scanf("%f", &s[index].gpa);
-    printf("%f", s[index].gpa);
+    //printf("%f", s[index].gpa);
 
     printf("\tCredit hours: ");
     scanf("%d", &s[index].credit);
@@ -121,6 +129,18 @@ void printTuition(student s[], int numStudents){
     }
     printf("Student with ID %s not found.\n", givenId);
     */
+}
+
+void makeCapital(char *givenStr)
+{
+    int i;
+    for (i = 0; givenStr[i] != '\0'; i++)
+    {
+        if (givenStr[i] >= 'a' && givenStr[i] <= 'z')
+        {
+            givenStr[i] = givenStr[i] - 32;
+        }
+    }
 }
 
 //_____________MAIN FUNCTION
@@ -156,7 +176,6 @@ void printTuition(student s[], int numStudents){
                 numstudent++;
                 break;
             case 3:
-                printf("%s", studentlst[numstudent-1].id);
                 printTuition(studentlst, numstudent);
                 break;
             case 4:
