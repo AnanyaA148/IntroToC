@@ -155,7 +155,7 @@ void addStudent(student s[], int index){
 
 
 void printTuition(char * name, char * id, float  gpa, int  credit){
-    printf("%d", credit);
+    //printf("%d", credit);
     float totalFee= credit * 236.45;
     float discount= 0;
     if (gpa>=3.85){
@@ -181,6 +181,9 @@ void makeCapital(char *givenStr)
         if (givenStr[i] >= 'a' && givenStr[i] <= 'z')
         {
             givenStr[i] = givenStr[i] - 32;
+        }
+        if (givenStr[i] == '\n'){
+            givenStr[i] = '\0';
         }
     }
 }
@@ -219,7 +222,7 @@ void makeCapital(char *givenStr)
                 break;
             case '2':
                 addStudent(studentlst, numstudent);
-                printf("%s", studentlst[numstudent].name);
+                //printf("%s", studentlst[numstudent].name);
                 numstudent++;
                 break;
             case '3':
