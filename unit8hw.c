@@ -61,7 +61,7 @@ int getId ( char * name ){
 void printEmployee ( struct employee e){
 
     float netSalary = e.salary*0.91 + (e.numberOfDependents *0.01*e.salary);
-    printf("[%d,%s,%f]\n", e.id, e.name, netSalary);
+    printf("[%d,%s,%.2f]\n", e.id, e.name, netSalary);
 
 }
 //2.
@@ -74,27 +74,27 @@ void printAllEmployees ( struct employee * list){
 }
 //3.
 struct employee * addEmployee ( struct employee * list , struct employee e){
-    
-    struct employee *temp2 = (struct employee *)malloc(sizeof(struct employee)); 
 
-    temp2->id = e.id; 
-    temp2->salary = e.salary; 
-    temp2->numberOfDependents = e.numberOfDependents; 
-    temp2->below = e.below; 
-    strcpy(temp2->name, e.name); 
-    temp2->next = NULL; 
-    
-    if (list == NULL) { 
-        return temp2; 
-    } 
-    
-    struct employee *temp = list; 
-    while (temp->next != NULL) { 
-        temp = temp->next; 
-    } 
-    temp->next = temp2; 
+    struct employee *temp2 = (struct employee *)malloc(sizeof(struct employee));
+
+    temp2->id = e.id;
+    temp2->salary = e.salary;
+    temp2->numberOfDependents = e.numberOfDependents;
+    temp2->below = e.below;
+    strcpy(temp2->name, e.name);
+    temp2->next = NULL;
+
+    if (list == NULL) {
+        return temp2;
+    }
+
+    struct employee *temp = list;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = temp2;
     return list;
-    
+
 }
 
 //4.
