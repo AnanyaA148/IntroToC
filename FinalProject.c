@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+int done =0;
 //_____________DATATYPE
 typedef struct{ // faculty info (MAX: 30)
     char * name;
@@ -35,7 +36,7 @@ typedef struct{ // student info (MAX: 100)
 //_____________PROTOTYPES
 void addFaculty(faculty f[], int index );// Add a new faculty memeber
 void addStudent(student s[], int index); // Add a new student
-void printTuition(student s[], int numStudents); // Print tuition invoice for a
+void printTuition(char * name, char * id, float  gpa, int  credit); // Print tuition invoice for a
 void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
@@ -51,7 +52,10 @@ void addFaculty(faculty f[], int index){
     printf("\n\nEnter the faculty's info:\n\n ");
 
     printf("\tName of the faculty: ");
-    scanf("%s", f[index].name);
+    char dead[5];
+    gets(dead);
+    fgets(f[index].name, 50, stdin);
+    //scanf("%s", f[index].name);
     makeCapital(f[index].name);
 
     //printf("%s", f[index].name);
@@ -61,15 +65,55 @@ void addFaculty(faculty f[], int index){
     scanf("%s", f[index].id);
     makeCapital(f[index].id);
 
-    printf("\tRank:");
-    scanf("%s", f[index].rank);
-    makeCapital(f[index].rank);
-
-    printf("\tDepartment: ");
-    scanf("%s", f[index].department);
-    makeCapital(f[index].department);
 
 
+    int i =0;
+    while(i<3){
+
+            printf("\tRank: ");
+            scanf("%s", f[index].rank);
+            makeCapital(f[index].rank);
+            if (strcmp(f[index].rank, "PROFESSOR") ==0|| strcmp(f[index].rank, "ADJUNCT") ==0) {
+                break;
+            }else{
+                if (i ==2){
+                    printf("\n\n\tYou have tried too many times...\n");
+                    done =1;
+                    return;
+
+                }
+                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n\n", f[index].rank );
+                i++;
+
+
+            }
+    }
+
+    i =0;
+    while(i<3){
+
+            printf("\tDepartment: ");
+            scanf("%s", f[index].department);
+            makeCapital(f[index].department);
+            if (strcmp(f[index].department, "MATH") ==0|| strcmp(f[index].department, "CS") ==0 || strcmp(f[index].department, "SCIENCE") ==0) {
+                break;
+            }else{
+                if (i ==2){
+                    printf("\n\n\tYou have tried too many times...\n");
+                    done =1;
+                    return;
+
+                }
+                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n\n", f[index].department );
+                i++;
+
+
+            }
+    }
+
+
+
+    printf("\nThanks!");
 
 }
 
@@ -86,7 +130,9 @@ void addStudent(student s[], int index){
     printf("\n\nEnter the student's info:\n\n ");
 
     printf("\tName of the student: ");
-    scanf("%s", s[index].name);
+    char dead[5];
+    gets(dead);
+    fgets(s[index].name, 50, stdin);
     makeCapital(s[index].name);
     //printf("%s", s[index].name);
 
@@ -102,33 +148,29 @@ void addStudent(student s[], int index){
     printf("\tCredit hours: ");
     scanf("%d", &s[index].credit);
 
+    printf("\nThanks!");
+
 
 }
 
 
-void printTuition(student s[], int numStudents){
-    //not working for some reason
-
-    /*
-    char givenId[20];
-    printf("Enter the student's ID: ");
-    scanf("%s", givenId);
-    for (int i = 0; i < numStudents; i++) {
-            if (strcmp(s[i].id, givenId) == 0) {
-                printf("Here is the tuition invoice for %s:\n", s[i].name);
-                printf("%s \t\t\t\t %s\n", s[i].name, s[i].id);
-                printf("Credit Hours: %d ($236.45/credit hour)\n", s[i].credit);
-                printf("Fees: $52\n"); float tuition = s[i].credit * 236.45 + 52;
-                // Apply 25% discount if GPA >= 3.85
-                if (s[i].gpa >= 3.85) {
-                        tuition *= 0.75;
-                }
-                printf("Total Payment: $%.2f\n", tuition);
-                return;
-            }
+void printTuition(char * name, char * id, float  gpa, int  credit){
+    printf("%d", credit);
+    float totalFee= credit * 236.45;
+    float discount= 0;
+    if (gpa>=3.85){
+        discount = totalFee * .75;
     }
-    printf("Student with ID %s not found.\n", givenId);
-    */
+
+
+    printf("Here is the tuition invoice for %s: \n\n", name);
+    printf("---------------------------------------------------------------------------");
+    printf("\n\t %s \t\t %s", name ,id);
+    printf("\n\t Credit Hours: %d ($236.45/credit hour)", credit);
+    printf("\n\t Fees: $52");
+    printf("\n\t Total payment: $%.2f \t\t\t($%.f discount applied)", totalFee, discount);
+    printf("\n---------------------------------------------------------------------------\n");
+
 }
 
 void makeCapital(char *givenStr)
@@ -146,14 +188,19 @@ void makeCapital(char *givenStr)
 //_____________MAIN FUNCTION
  int main(){
 
+    int invalid =0;
+
     faculty facultylst[30];
-    int numfaculty;
+    int numfaculty = 0;
 
     student studentlst[100];
-    int numstudent;
+    int numstudent =0;
+
+    printf("\t\t\tWelcome to PerPro\n\n");
 
     while(1){
-        int done =0;
+
+        char givenID[50];
         printf("Choose one of the options: \n\n");
         printf("1- Add a new faculty member\n");
         printf("2- Add a new Student \n");
@@ -161,30 +208,51 @@ void makeCapital(char *givenStr)
         printf("4- Print information of a faculty\n");
         printf("5 - Exit Program\n");
         printf("\n\n\tEnter your selection: ");
-        int select;
-        scanf("%d", &select);
+        char select;
+        scanf("%s", &select);
 
         switch(select)
         {
-            case 1:
+            case '1':
                 addFaculty(facultylst, numfaculty);
                 numfaculty++;
                 break;
-            case 2:
+            case '2':
                 addStudent(studentlst, numstudent);
-                //printf("%s", studentlst[numstudent].id);
+                printf("%s", studentlst[numstudent].name);
                 numstudent++;
                 break;
-            case 3:
-                printTuition(studentlst, numstudent);
+            case '3':
+                printf("\n\tEnter the student's id: ");
+                scanf("%s", givenID);
+
+
+                //printf("%s", givenID);
+                for (int i =0; i<numstudent; i++){
+
+                    if (strcmp(givenID, studentlst[i].id)==0){
+                        //printf("%s", studentlst[numstudent-1].name);
+                        //printf("%s",studentlst[i].name);
+                        printTuition(studentlst[i].name, studentlst[i].id, studentlst[i].gpa, studentlst[i].credit);
+                    }
+                }
                 break;
-            case 4:
+            case '4':
                 break;
-            case 5:
+            case '5':
                 done =1;
                 break;
             default:
-                done =1;
+                invalid++;
+                if (invalid ==3){
+                        printf("You have tried too many times...");
+                        done =1;
+                }
+                else{
+                        printf("Invalid entry- please try again.");
+                }
+
+                break;
 
 
         }
@@ -194,5 +262,6 @@ void makeCapital(char *givenStr)
 
 
     }
+    printf("\tThank you for using PerPro. Goodbye!");
 
  }
