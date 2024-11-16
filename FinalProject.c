@@ -113,7 +113,7 @@ void addFaculty(faculty f[], int index){
 
 
 
-    printf("\nThanks!");
+    printf("\nThanks!\n\n");
 
 }
 
@@ -148,7 +148,7 @@ void addStudent(student s[], int index){
     printf("\tCredit hours: ");
     scanf("%d", &s[index].credit);
 
-    printf("\nThanks!");
+    printf("\nThanks!\n\n");
 
 
 }
@@ -262,6 +262,6 @@ void makeCapital(char *givenStr)
 
 
     }
-    printf("\tThank you for using PerPro. Goodbye!");
+    printf("\n\tThank you for using PerPro. Goodbye!");
 
  }
