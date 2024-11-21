@@ -39,7 +39,7 @@ void addStudent(student s[], int index); // Add a new student
 void printTuition(char * name, char * id, float  gpa, int  credit); // Print tuition invoice for a student
 void printFaculty(char * name, char * department, char * rank); // Print information of a faculty
 void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
-//void freefunc(faculty f[], student s[], int numFaculty, int numStudent); // Frees all of the information in studentlst and facultylst at the end of the whole process
+void freefunc(faculty f[], student s[], int numFaculty, int numStudent); // Frees all of the information in studentlst and facultylst at the end of the whole process
 
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
