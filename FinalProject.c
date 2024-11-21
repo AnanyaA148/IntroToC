@@ -40,6 +40,7 @@ void printTuition(char * name, char * id, float  gpa, int  credit); // Print tui
 void printFaculty(char * name, char * department, char * rank); // Print information of a faculty
 void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
 void freefunc(faculty f[], student s[], int numFaculty, int numStudent); // Frees all of the information in studentlst and facultylst at the end of the whole process
+void exitProgram(); // Prints out final report if user wanted to exit the program
 
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
@@ -191,10 +192,36 @@ void printFaculty(char * name, char * department, char * rank){
     return;
 
 }
-void exitProgram();
+
 
 void exitProgram(){
-    printf("okay");
+    //User can output the faculty information sorted
+    char faculty;
+
+    printf("\nEnter\n");
+    printf("\t N or n to sort the faculty by name\n");
+    printf("\t D or d to sort the faculty by department\n");
+    printf("\t R or r to sort the faculty by rank\n");
+
+    printf("\nMake your sort selection:");
+    scanf("%s",&faculty);
+
+    //User can output the student information sorted
+
+    char student;
+
+    printf("\n\nEnter\n");
+    printf("\t N or n to sort the students by name\n");
+    printf("\t G or g to sort the students by gpa\n");
+
+    printf("\nMake your sort selection:");
+    scanf("%s",&student);
+    printf("");
+
+    return;
+
+
+
 }
 
 
