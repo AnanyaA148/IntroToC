@@ -191,7 +191,11 @@ void printFaculty(char * name, char * department, char * rank){
     return;
 
 }
+void exitProgram();
 
+void exitProgram(){
+    printf("okay");
+}
 
 
 void makeCapital(char *givenStr)
@@ -230,6 +234,7 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 //_____________MAIN FUNCTION
  int main(){
 
+    char answer;
     int invalid =0;
 
     faculty facultylst[30];
@@ -240,10 +245,12 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
     printf("\t\t\tWelcome to PerPro\n\n");
 
+
     while(1){
 
         char givenID[10];
         int notFound =1;
+
 
         printf("Choose one of the options: \n\n");
         printf("1- Add a new faculty member\n");
@@ -306,9 +313,17 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
                 break;
             case '5':
+                printf("\nWould you like to print a final report (Y/N):");
+                scanf("%s",&answer);
 
-
+                if(answer == 'N'|| answer == 'n')
+                {
+                    printf("\n");
+                }else{
+                    exitProgram();
+                }
                 done =1;
+
                 break;
             default:
                 invalid++;
