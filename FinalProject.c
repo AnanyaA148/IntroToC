@@ -206,6 +206,36 @@ void exitProgram(){
     printf("\nMake your sort selection:");
     scanf("%s",&faculty);
 
+    // Sort faculty based on selection
+    if(faculty== 'n'|| faculty== 'N')
+    {
+        printf("\nN\n");
+        /*
+        qsort(f, count, sizeof(f), compareNames);
+        print_faculty(f,count);
+        */
+    }
+    else if(faculty== 'd'|| faculty== 'D')
+    {
+        printf("\nD\n");
+        /*
+        qsort(f, count, sizeof(f), compareDepart);
+        print_faculty(f,count);
+        */
+    }
+    else if(faculty== 'r'|| faculty== 'R')
+    {
+        printf("\nR\n");
+        /*
+        qsort(f, count, sizeof(f), compareRanks);
+        print_faculty(f,count);
+        */
+    }
+    else
+    {
+        printf("\nInvalid sorting option");
+    }
+
     //User can output the student information sorted
 
     char student;
@@ -216,7 +246,33 @@ void exitProgram(){
 
     printf("\nMake your sort selection:");
     scanf("%s",&student);
-    printf("");
+
+    if(student== 'n'|| student== 'N')
+    {
+        printf("N");
+        /*
+        qsort(s, scount, sizeof(s), compareNames);
+        print_student(s,scount);
+        */
+    }
+    else if(student== 'g'|| student== 'G')
+    {
+        printf("G");
+        /*
+        qsort(s, scount, sizeof(s), compareGpa);
+        print_student(s,scount);
+        */
+    }
+    else
+    {
+        printf("\nInvalid sorting option");
+    }
+
+
+
+    // Print out List of Faculty and Students
+    printf("\nHere is your report....");
+
 
     return;
 
