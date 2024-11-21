@@ -36,8 +36,11 @@ typedef struct{ // student info (MAX: 100)
 //_____________PROTOTYPES
 void addFaculty(faculty f[], int index );// Add a new faculty memeber
 void addStudent(student s[], int index); // Add a new student
-void printTuition(char * name, char * id, float  gpa, int  credit); // Print tuition invoice for a
+void printTuition(char * name, char * id, float  gpa, int  credit); // Print tuition invoice for a student
+void printFaculty(char * name, char * department, char * rank); // Print information of a faculty
 void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
+//void freefunc(faculty f[], student s[], int numFaculty, int numStudent); // Frees all of the information in studentlst and facultylst at the end of the whole process
+
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
 
@@ -173,9 +176,9 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
 
 }
 
-void printFaculty(char * name, char * id, char * department, char * rank);
 
-void printFaculty(char * name, char * id, char * department, char * rank){
+
+void printFaculty(char * name, char * department, char * rank){
 
 
     printf("Faculty found:\n");
@@ -204,6 +207,24 @@ void makeCapital(char *givenStr)
         }
     }
 }
+
+
+void freefunc(faculty f[], student s[], int numF, int numS) {
+    for (int i = 0; i < numF; i++) {
+        free(f[i].name);
+        free(f[i].id);
+        free(f[i].department);
+        free(f[i].rank);
+    }
+
+    for (int j = 0; j < numS; j++) {
+        free(s[j].name);
+        free(s[j].id);
+    }
+    return;
+}
+
+
 
 //_____________MAIN FUNCTION
  int main(){
@@ -259,7 +280,7 @@ void makeCapital(char *givenStr)
                         printTuition(studentlst[i].name, studentlst[i].id, studentlst[i].gpa, studentlst[i].credit);
                     }
                 }
-                // If the given ID is not in the faculty list
+                // If the given ID is not in the student list
                 if (notFound){
                     printf("\n\tSorry %s doesn\'t exist\n\n", givenID);
                 }
@@ -273,7 +294,7 @@ void makeCapital(char *givenStr)
                 for (int i = 0; i < numfaculty; i++) {
                     if (strcmp(givenID, facultylst[i].id) == 0) {
                         notFound =0;
-                        printFaculty(facultylst[i].name, facultylst[i].id, facultylst[i].department, facultylst[i].rank);
+                        printFaculty(facultylst[i].name, facultylst[i].department, facultylst[i].rank);
 
                     }
                 }
@@ -301,6 +322,7 @@ void makeCapital(char *givenStr)
 
         }
         if (done){
+            freefunc(facultylst, studentlst, numfaculty, numstudent);
             break;
         }
 
