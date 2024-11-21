@@ -39,8 +39,8 @@ void addStudent(student s[], int index); // Add a new student
 void printTuition(char * name, char * id, float  gpa, int  credit); // Print tuition invoice for a student
 void printFaculty(char * name, char * department, char * rank); // Print information of a faculty
 void makeCapital (char *givenStr); // as STRING entries are stored in capital, this makes all letter inputs capital letters
-void freefunc(faculty f[], student s[], int numFaculty, int numStudent); // Frees all of the information in studentlst and facultylst at the end of the whole process
-void exitProgram(); // Prints out final report if user wanted to exit the program
+void freefunc(faculty f[], student s[], int numF, int numS); // Frees all of the information in studentlst and facultylst at the end of the whole process
+void exitProgram(faculty f[], student s[], int numF, int numS); // Prints out final report if user wanted to exit the program
 
 //_____________FUNCTIONS
 void addFaculty(faculty f[], int index){
@@ -193,10 +193,9 @@ void printFaculty(char * name, char * department, char * rank){
 
 }
 
-
-void exitProgram(){
+void exitProgram(faculty f[], student s[], int numF, int numS){
     //User can output the faculty information sorted
-    char faculty;
+    char facultyC;
 
     printf("\nEnter\n");
     printf("\t N or n to sort the faculty by name\n");
@@ -204,10 +203,10 @@ void exitProgram(){
     printf("\t R or r to sort the faculty by rank\n");
 
     printf("\nMake your sort selection:");
-    scanf("%s",&faculty);
+    scanf("%s",&facultyC);
 
     // Sort faculty based on selection
-    if(faculty== 'n'|| faculty== 'N')
+    if(facultyC== 'n'|| facultyC== 'N')
     {
         printf("\nN\n");
         /*
@@ -215,7 +214,7 @@ void exitProgram(){
         print_faculty(f,count);
         */
     }
-    else if(faculty== 'd'|| faculty== 'D')
+    else if(facultyC== 'd'|| facultyC== 'D')
     {
         printf("\nD\n");
         /*
@@ -223,7 +222,7 @@ void exitProgram(){
         print_faculty(f,count);
         */
     }
-    else if(faculty== 'r'|| faculty== 'R')
+    else if(facultyC== 'r'|| facultyC== 'R')
     {
         printf("\nR\n");
         /*
@@ -238,16 +237,16 @@ void exitProgram(){
 
     //User can output the student information sorted
 
-    char student;
+    char studentC;
 
     printf("\n\nEnter\n");
     printf("\t N or n to sort the students by name\n");
     printf("\t G or g to sort the students by gpa\n");
 
     printf("\nMake your sort selection:");
-    scanf("%s",&student);
+    scanf("%s",&studentC);
 
-    if(student== 'n'|| student== 'N')
+    if(studentC== 'n'|| studentC== 'N')
     {
         printf("N");
         /*
@@ -255,7 +254,7 @@ void exitProgram(){
         print_student(s,scount);
         */
     }
-    else if(student== 'g'|| student== 'G')
+    else if(studentC== 'g'|| studentC== 'G')
     {
         printf("G");
         /*
@@ -271,8 +270,20 @@ void exitProgram(){
 
 
     // Print out List of Faculty and Students
-    printf("\nHere is your report....");
+    printf("\nHere is your report....\n");
 
+    //Print Faculty
+    printf("\n\t----LIST OF FACULTY----\n");
+
+    for (int i = 0; i < numF; i++) {
+        printf("\n\t\t%s - %s\n",f[i].name,f[i].department);
+    }
+    //Print Student
+    printf("\n\t----List of Students----\n");
+
+    for (int j = 0; j < numS; j++) {
+        printf("\n\t\t%s (%.2f)\n",s[j].name, s[j].gpa);
+    }
 
     return;
 
@@ -403,7 +414,7 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
                 {
                     printf("\n");
                 }else{
-                    exitProgram();
+                    exitProgram(facultylst, studentlst, numfaculty, numstudent);
                 }
                 done =1;
 
