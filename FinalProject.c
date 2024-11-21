@@ -47,7 +47,7 @@ void addFaculty(faculty f[], int index){
 
 
     f[index].name = malloc(50 * sizeof(char)); // Allocate enough space for the name
-    f[index].id = malloc(20 * sizeof(char)); // Allocate enough space for the id
+    f[index].id = malloc(10 * sizeof(char)); // Allocate enough space for the id
     f[index].department = malloc(50 * sizeof(char)); // Allocate enough space for the department
     f[index].rank = malloc(30 * sizeof(char));
 
@@ -127,7 +127,7 @@ void addStudent(student s[], int index){
 
 
     s[index].name = malloc(50 * sizeof(char)); // Allocate enough space for the name
-    s[index].id = malloc(20 * sizeof(char)); // Allocate enough space for the id
+    s[index].id = malloc(10 * sizeof(char)); // Allocate enough space for the id
 
 
     printf("\n\nEnter the student's info:\n\n ");
@@ -242,7 +242,7 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
     while(1){
 
-        char givenID[50];
+        char givenID[10];
         int notFound =1;
 
         printf("Choose one of the options: \n\n");
