@@ -14,7 +14,7 @@ struct employee {
 
 //----------------------- FUNCTION PROTOTYPES ---------------------------
 //0.
-int getId ( char * name);
+//int getId1 ( char * name);
 /*
 returns the sum of the ascii codes of the letters of name.
 */

@@ -173,6 +173,23 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
 
 }
 
+void printFaculty(char * name, char * id, char * department, char * rank);
+
+void printFaculty(char * name, char * id, char * department, char * rank){
+
+
+    printf("Faculty found:\n");
+    printf("--------------------------------------------\n");
+    printf("\t %s\n", name);
+    printf("\t %s department, ", department);
+    printf("%s\n", rank);
+    printf("---------------------------------------------\n");
+    return;
+
+}
+
+
+
 void makeCapital(char *givenStr)
 {
     int i;
@@ -204,6 +221,8 @@ void makeCapital(char *givenStr)
     while(1){
 
         char givenID[50];
+        int notFound =1;
+
         printf("Choose one of the options: \n\n");
         printf("1- Add a new faculty member\n");
         printf("2- Add a new Student \n");
@@ -226,7 +245,7 @@ void makeCapital(char *givenStr)
                 numstudent++;
                 break;
             case '3':
-                printf("\n\tEnter the student's id: ");
+                printf("\n\tEnter the student\'s id: ");
                 scanf("%s", givenID);
 
 
@@ -236,11 +255,33 @@ void makeCapital(char *givenStr)
                     if (strcmp(givenID, studentlst[i].id)==0){
                         //printf("%s", studentlst[numstudent-1].name);
                         //printf("%s",studentlst[i].name);
+                        notFound =0;
                         printTuition(studentlst[i].name, studentlst[i].id, studentlst[i].gpa, studentlst[i].credit);
                     }
                 }
+                // If the given ID is not in the faculty list
+                if (notFound){
+                    printf("\n\tSorry %s doesn\'t exist\n\n", givenID);
+                }
+
                 break;
             case '4':
+                printf("\n \tEnter the faculty\'s id: ");
+                scanf("%s", &givenID);
+
+
+                for (int i = 0; i < numfaculty; i++) {
+                    if (strcmp(givenID, facultylst[i].id) == 0) {
+                        notFound =0;
+                        printFaculty(facultylst[i].name, facultylst[i].id, facultylst[i].department, facultylst[i].rank);
+
+                    }
+                }
+                // If the given ID is not in the faculty list
+                if (notFound){
+                    printf("\n\tSorry %s doesn\'t exist\n\n", givenID);
+                }
+
                 break;
             case '5':
                 done =1;
