@@ -162,7 +162,8 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
     float totalFee= credit * 236.45;
     float discount= 0;
     if (gpa>=3.85){
-        discount = totalFee * .75;
+        discount = totalFee * .25;
+        totalFee= totalFee -discount;
     }
 
 
@@ -305,6 +306,8 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
                 break;
             case '5':
+
+
                 done =1;
                 break;
             default:
