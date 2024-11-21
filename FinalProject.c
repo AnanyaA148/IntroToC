@@ -206,29 +206,60 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     scanf("%s",&facultyC);
 
     // Sort faculty based on selection
+    int swapped;
+    faculty temp;
+
     if(facultyC== 'n'|| facultyC== 'N')
     {
-        printf("\nN\n");
-        /*
-        qsort(f, count, sizeof(f), compareNames);
-        print_faculty(f,count);
-        */
+        //sort by name
+        for (int i =0; i<numF; i++){
+            swapped =0;
+            for (int j =0; j <numF-1; j++){
+                if (strcmp(f[j].name, f[j+1].name) >0){
+                    temp = f[j];
+                    f[j] = f[j+1];
+                    f[j+1] = temp;
+                }
+            }
+            if (swapped){
+                break;
+            }
+        }
+
     }
     else if(facultyC== 'd'|| facultyC== 'D')
     {
-        printf("\nD\n");
-        /*
-        qsort(f, count, sizeof(f), compareDepart);
-        print_faculty(f,count);
-        */
+        //sort by department
+        for (int i =0; i<numF; i++){
+            swapped =0;
+            for (int j =0; j <numF-1; j++){
+                if (strcmp(f[j].department, f[j+1].department) >0){
+                    temp = f[j];
+                    f[j] = f[j+1];
+                    f[j+1] = temp;
+                }
+            }
+            if (swapped){
+                break;
+            }
+        }
     }
     else if(facultyC== 'r'|| facultyC== 'R')
     {
-        printf("\nR\n");
-        /*
-        qsort(f, count, sizeof(f), compareRanks);
-        print_faculty(f,count);
-        */
+        // sort by rank
+        for (int i =0; i<numF; i++){
+            swapped =0;
+            for (int j =0; j <numF-1; j++){
+                if (strcmp(f[j].rank, f[j+1].rank) >0){
+                    temp = f[j];
+                    f[j] = f[j+1];
+                    f[j+1] = temp;
+                }
+            }
+            if (swapped){
+                break;
+            }
+        }
     }
     else
     {
@@ -246,21 +277,41 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     printf("\nMake your sort selection:");
     scanf("%s",&studentC);
 
+    student tempS;
+
     if(studentC== 'n'|| studentC== 'N')
     {
-        printf("N");
-        /*
-        qsort(s, scount, sizeof(s), compareNames);
-        print_student(s,scount);
-        */
+        //sort by student name
+        for (int i =0; i<numS; i++){
+            swapped =0;
+            for (int j =0; j <numS-1; j++){
+                if (strcmp(s[j].name, s[j+1].name) >0){
+                    tempS = s[j];
+                    s[j] = s[j+1];
+                    s[j+1] = tempS;
+                }
+            }
+            if (swapped){
+                break;
+            }
+        }
     }
     else if(studentC== 'g'|| studentC== 'G')
     {
-        printf("G");
-        /*
-        qsort(s, scount, sizeof(s), compareGpa);
-        print_student(s,scount);
-        */
+        //sort by gpa
+        for (int i =0; i<numS; i++){
+            swapped =0;
+            for (int j =0; j <numS-1; j++){
+                if (s[j].gpa > s[j+1].gpa){
+                    tempS = s[j];
+                    s[j] = s[j+1];
+                    s[j+1] = tempS;
+                }
+            }
+            if (swapped){
+                break;
+            }
+        }
     }
     else
     {
@@ -273,13 +324,13 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     printf("\nHere is your report....\n");
 
     //Print Faculty
-    printf("\n\t----LIST OF FACULTY----\n");
+    printf("\n\t---- L I S T  O F  F A C U L T Y ----\n");
 
     for (int i = 0; i < numF; i++) {
         printf("\n\t\t%s - %s\n",f[i].name,f[i].department);
     }
     //Print Student
-    printf("\n\t----List of Students----\n");
+    printf("\n\t---- L I S T  O F  S T U D E N T S ----\n");
 
     for (int j = 0; j < numS; j++) {
         printf("\n\t\t%s (%.2f)\n",s[j].name, s[j].gpa);
