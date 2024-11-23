@@ -2,8 +2,8 @@
 
     Ananya Agarwal
     Sharon Huang
-    Caleb
-    Adrian
+    Caleb  Kimondo
+    Adrian Bernazar
 */
 
 //________________________________
