@@ -66,7 +66,8 @@ void addFaculty(faculty f[], int index){
 
 
     printf("\n\tID: ");
-    scanf("%s", f[index].id);
+    fgets(f[index].id, 50, stdin);
+    //("%s", f[index].id);
     makeCapital(f[index].id);
 
 
@@ -75,7 +76,9 @@ void addFaculty(faculty f[], int index){
     while(i<3){
 
             printf("\n\tRank: ");
-            scanf("%s", f[index].rank);
+            //gets(dead);
+            fgets(f[index].rank, 50, stdin);
+            //scanf("%s", f[index].rank);
             makeCapital(f[index].rank);
             if (strcmp(f[index].rank, "PROFESSOR") ==0|| strcmp(f[index].rank, "ADJUNCT") ==0) {
                 break;
@@ -97,7 +100,8 @@ void addFaculty(faculty f[], int index){
     while(i<3){
 
             printf("\n\tDepartment: ");
-            scanf("%s", f[index].department);
+            fgets(f[index].department, 50, stdin);
+            //scanf("%s", f[index].department);
             makeCapital(f[index].department);
             if (strcmp(f[index].department, "MATH") ==0|| strcmp(f[index].department, "CS") ==0 || strcmp(f[index].department, "SCIENCE") ==0) {
                 break;
