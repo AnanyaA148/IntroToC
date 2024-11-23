@@ -174,8 +174,8 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
     printf("\n\t %s \t\t\t\t %s\n", name ,id);
     printf("\n\t Credit Hours: %d ($236.45/credit hour)\n", credit);
     printf("\n\t Fees: $52\n\n");
-    printf("\n\t Total payment: $%.2f \t\t\t($%.f discount applied)", totalFee, discount);
-    printf("\n---------------------------------------------------------------------------\n");
+    printf("\n\t Total payment: $%.2f \t\t\t($%.f discount applied)\n", totalFee, discount);
+    printf("\n---------------------------------------------------------------------------\n\n");
 
 }
 
@@ -203,7 +203,7 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     printf("\t D or d to sort the faculty by department\n");
     printf("\t R or r to sort the faculty by rank\n");
 
-    printf("\nMake your sort selection:");
+    printf("\nMake your sort selection: ");
     scanf("%s",&facultyC);
 
     // Sort faculty based on selection
@@ -275,7 +275,7 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     printf("\t N or n to sort the students by name\n");
     printf("\t G or g to sort the students by gpa\n");
 
-    printf("\nMake your sort selection:");
+    printf("\nMake your sort selection: ");
     scanf("%s",&studentC);
 
     student tempS;
@@ -466,7 +466,7 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
                 break;
             case '5':
-                printf("\nWould you like to print a final report (Y/N):");
+                printf("\nWould you like to print a final report (Y/N): ");
                 scanf("%s",&answer);
 
                 if(answer == 'N'|| answer == 'n')
