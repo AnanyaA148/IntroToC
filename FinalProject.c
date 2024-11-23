@@ -53,9 +53,9 @@ void addFaculty(faculty f[], int index){
     f[index].rank = malloc(30 * sizeof(char));
 
 
-    printf("\n\nEnter the faculty's info:\n\n ");
+    printf("\n\nEnter the faculty's info:\n ");
 
-    printf("\tName of the faculty: ");
+    printf("\n\tName of the faculty: ");
     char dead[5];
     gets(dead);
     fgets(f[index].name, 50, stdin);
@@ -65,7 +65,7 @@ void addFaculty(faculty f[], int index){
     //printf("%s", f[index].name);
 
 
-    printf("\tID: ");
+    printf("\n\tID: ");
     scanf("%s", f[index].id);
     makeCapital(f[index].id);
 
@@ -74,7 +74,7 @@ void addFaculty(faculty f[], int index){
     int i =0;
     while(i<3){
 
-            printf("\tRank: ");
+            printf("\n\tRank: ");
             scanf("%s", f[index].rank);
             makeCapital(f[index].rank);
             if (strcmp(f[index].rank, "PROFESSOR") ==0|| strcmp(f[index].rank, "ADJUNCT") ==0) {
@@ -86,7 +86,7 @@ void addFaculty(faculty f[], int index){
                     return;
 
                 }
-                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n\n", f[index].rank );
+                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n", f[index].rank );
                 i++;
 
 
@@ -96,7 +96,7 @@ void addFaculty(faculty f[], int index){
     i =0;
     while(i<3){
 
-            printf("\tDepartment: ");
+            printf("\n\tDepartment: ");
             scanf("%s", f[index].department);
             makeCapital(f[index].department);
             if (strcmp(f[index].department, "MATH") ==0|| strcmp(f[index].department, "CS") ==0 || strcmp(f[index].department, "SCIENCE") ==0) {
@@ -108,7 +108,7 @@ void addFaculty(faculty f[], int index){
                     return;
 
                 }
-                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n\n", f[index].department );
+                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n", f[index].department );
                 i++;
 
 
@@ -133,7 +133,7 @@ void addStudent(student s[], int index){
 
     printf("\n\nEnter the student's info:\n\n ");
 
-    printf("\tName of the student: ");
+    printf("\n\tName of Student: ");
     char dead[5];
     gets(dead);
     fgets(s[index].name, 50, stdin);
@@ -141,15 +141,15 @@ void addStudent(student s[], int index){
     //printf("%s", s[index].name);
 
 
-    printf("\tID: ");
+    printf("\n\tID: ");
     scanf("%s", s[index].id);
     makeCapital(s[index].id);
 
-    printf("\tGPA:");
+    printf("\n\tGPA: ");
     scanf("%f", &s[index].gpa);
     //printf("%f", s[index].gpa);
 
-    printf("\tCredit hours: ");
+    printf("\n\tCredit hours: ");
     scanf("%d", &s[index].credit);
 
     printf("\nThanks!\n\n");
@@ -164,15 +164,16 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
     float discount= 0;
     if (gpa>=3.85){
         discount = totalFee * .25;
-        totalFee= totalFee -discount;
+        totalFee= totalFee - discount;
     }
+    totalFee= totalFee +52;
 
 
-    printf("Here is the tuition invoice for %s: \n\n", name);
+    printf("\n\tHere is the tuition invoice for %s: \n\n", name);
     printf("---------------------------------------------------------------------------");
-    printf("\n\t %s \t\t %s", name ,id);
-    printf("\n\t Credit Hours: %d ($236.45/credit hour)", credit);
-    printf("\n\t Fees: $52");
+    printf("\n\t %s \t\t\t\t %s\n", name ,id);
+    printf("\n\t Credit Hours: %d ($236.45/credit hour)\n", credit);
+    printf("\n\t Fees: $52\n\n");
     printf("\n\t Total payment: $%.2f \t\t\t($%.f discount applied)", totalFee, discount);
     printf("\n---------------------------------------------------------------------------\n");
 
@@ -183,12 +184,12 @@ void printTuition(char * name, char * id, float  gpa, int  credit){
 void printFaculty(char * name, char * department, char * rank){
 
 
-    printf("Faculty found:\n");
-    printf("--------------------------------------------\n");
-    printf("\t %s\n", name);
-    printf("\t %s department, ", department);
+    printf("\nFaculty found:");
+    printf("\n--------------------------------------------\n");
+    printf("\n\t %s\n", name);
+    printf("\n\t %s department, ", department);
     printf("%s\n", rank);
-    printf("---------------------------------------------\n");
+    printf("\n---------------------------------------------\n\n");
     return;
 
 }
@@ -333,7 +334,7 @@ void exitProgram(faculty f[], student s[], int numF, int numS){
     printf("\n\t---- L I S T  O F  S T U D E N T S ----\n");
 
     for (int j = 0; j < numS; j++) {
-        printf("\n\t\t%s (%.2f)\n",s[j].name, s[j].gpa);
+        printf("\n\t\t%s (GPA = %.2f)\n",s[j].name, s[j].gpa);
     }
 
     return;
@@ -396,13 +397,16 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
         char givenID[10];
         int notFound =1;
 
+        if (invalid ==0){
 
-        printf("Choose one of the options: \n\n");
-        printf("1- Add a new faculty member\n");
-        printf("2- Add a new Student \n");
-        printf("3- Print tuition invoice for a student\n");
-        printf("4- Print information of a faculty\n");
-        printf("5 - Exit Program\n");
+
+            printf("Choose one of the options: \n\n");
+            printf("1- Add a new faculty member\n");
+            printf("2- Add a new Student \n");
+            printf("3- Print tuition invoice for a student\n");
+            printf("4- Print information of a faculty\n");
+            printf("5 - Exit Program\n");
+        }
         printf("\n\n\tEnter your selection: ");
         char select;
         scanf("%s", &select);
@@ -412,16 +416,18 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
             case '1':
                 addFaculty(facultylst, numfaculty);
                 numfaculty++;
+                invalid =0;
                 break;
             case '2':
                 addStudent(studentlst, numstudent);
-                //printf("%s", studentlst[numstudent].name);
                 numstudent++;
+                invalid =0;
                 break;
             case '3':
                 printf("\n\tEnter the student\'s id: ");
                 scanf("%s", givenID);
-
+                makeCapital(givenID);
+                invalid =0;
 
                 //printf("%s", givenID);
                 for (int i =0; i<numstudent; i++){
@@ -435,13 +441,15 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
                 }
                 // If the given ID is not in the student list
                 if (notFound){
-                    printf("\n\tSorry %s doesn\'t exist\n\n", givenID);
+                    printf("\n\tSorry-student not found!\n\n");
                 }
 
                 break;
             case '4':
                 printf("\n \tEnter the faculty\'s id: ");
-                scanf("%s", &givenID);
+                scanf("%s", givenID);
+                makeCapital(givenID);
+                invalid =0;
 
 
                 for (int i = 0; i < numfaculty; i++) {
@@ -468,16 +476,16 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
                     exitProgram(facultylst, studentlst, numfaculty, numstudent);
                 }
                 done =1;
-
+                invalid =0;
                 break;
             default:
                 invalid++;
                 if (invalid ==3){
-                        printf("You have tried too many times...");
+                        printf("\n\tYou have tried too many times...\n");
                         done =1;
                 }
                 else{
-                        printf("Invalid entry- please try again.");
+                        printf("\n\tInvalid entry- please try again.");
                 }
 
                 break;
@@ -491,6 +499,6 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
 
 
     }
-    printf("\n\tThank you for using PerPro. Goodbye!");
+    printf("\n\tThank you for using PerPro. Goodbye!\n");
 
  }
