@@ -467,6 +467,10 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
             case '4':
                 printf("\n \tEnter the faculty\'s id: ");
                 scanf("%s", givenID);
+
+                char * temp1 = malloc(30 * sizeof(char));
+                strcpy(temp1, givenID);
+
                 makeCapital(givenID);
                 invalid =0;
 
@@ -480,13 +484,14 @@ void freefunc(faculty f[], student s[], int numF, int numS) {
                 }
                 // If the given ID is not in the faculty list
                 if (notFound){
-                    printf("\n\tSorry %s doesn\'t exist\n\n", givenID);
+                    printf("\n\tSorry %s doesn\'t exist\n\n", temp1);
                 }
 
                 break;
             case '5':
                 printf("\nWould you like to print a final report (Y/N): ");
                 scanf("%s",&answer);
+
 
                 if(answer == 'N'|| answer == 'n')
                 {
