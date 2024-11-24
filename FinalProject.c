@@ -59,15 +59,12 @@ void addFaculty(faculty f[], int index){
     char dead[5];
     gets(dead);
     fgets(f[index].name, 50, stdin);
-    //scanf("%s", f[index].name);
     makeCapital(f[index].name);
 
-    //printf("%s", f[index].name);
 
 
     printf("\n\tID: ");
     fgets(f[index].id, 50, stdin);
-    //("%s", f[index].id);
     makeCapital(f[index].id);
 
 
@@ -78,6 +75,8 @@ void addFaculty(faculty f[], int index){
             printf("\n\tRank: ");
             //gets(dead);
             fgets(f[index].rank, 50, stdin);
+            char * rank1 = malloc(30 * sizeof(char));
+            strcpy(rank1, f[index].rank);
             //scanf("%s", f[index].rank);
             makeCapital(f[index].rank);
             if (strcmp(f[index].rank, "PROFESSOR") ==0|| strcmp(f[index].rank, "ADJUNCT") ==0) {
@@ -89,7 +88,14 @@ void addFaculty(faculty f[], int index){
                     return;
 
                 }
-                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n", f[index].rank );
+                int j;
+                for (j = 0; rank1[j] != '\0'; j++)
+                {
+                    if (rank1[j] == '\n'){
+                        rank1[j] = '\0';
+                    }
+                }
+                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n", rank1 );
                 i++;
 
 
@@ -101,6 +107,8 @@ void addFaculty(faculty f[], int index){
 
             printf("\n\tDepartment: ");
             fgets(f[index].department, 50, stdin);
+            char * department1 = malloc(30 * sizeof(char));
+            strcpy(department1, f[index].department);
             //scanf("%s", f[index].department);
             makeCapital(f[index].department);
             if (strcmp(f[index].department, "MATH") ==0|| strcmp(f[index].department, "CS") ==0 || strcmp(f[index].department, "SCIENCE") ==0) {
@@ -112,7 +120,14 @@ void addFaculty(faculty f[], int index){
                     return;
 
                 }
-                printf("\n\t\tSorry entered rank (%s) is invalid. Try again.\n", f[index].department );
+                int j;
+                for (j = 0; department1[j] != '\0'; j++)
+                {
+                    if (department1[j] == '\n'){
+                        department1[j] = '\0';
+                    }
+                }
+                printf("\n\t\tSorry entered department (%s) is invalid. Try again.\n", department1 );
                 i++;
 
 
